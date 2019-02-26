@@ -1,0 +1,66 @@
+<div>
+  <h3>Héroe: <small>Nom heroe</small></h3>
+  <hr>
+  <form [formGroup]="form" (submit)="getSubmitForm()" novalidate>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Id</label>
+      <div class="col-8">
+
+        <input class="form-control" [ngClass]="{'is-valid': form.controls['id'].valid, 'is-invalid': form.controls['id'].errors?.required && form.controls['id'].touched}"
+               type="text"
+               placeholder="Id"
+               formControlName="id">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          <p *ngIf="form.controls['id'].errors?.required">Por favor escriba un id.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+
+        <input class="form-control" [ngClass]="{'is-valid': form.controls['name'].valid, 'is-invalid': form.controls['name'].errors?.required && form.controls['name'].touched}"
+               type="text"
+               placeholder="name"
+               formControlName="name">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          <p *ngIf="form.controls['id'].errors?.required">Por favor escriba un nombre.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Casa</label>
+      <div class="col-8">
+
+        <select formControlName="house" class="form-control" [ngClass]="{'is-valid': form.controls['house'].valid, 'is-invalid': form.controls['house'].errors?.required && form.controls['house'].touched}">
+          <option *ngFor="let h of Houses" value="{{h.name}}">{{h.name}}</option>
+        </select>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          <p *ngIf="form.controls['house'].errors?.required">Por favor seleccione una casa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">&nbsp;</label>
+      <div class="input-group col-md-8">
+        <button type="submit" class="btn btn-outline-primary" [disabled]="!form.valid"> <!-- [disabled]="!form.valid" -->
+          {{new ? 'Crear' : 'Editar'}} Heroe
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
