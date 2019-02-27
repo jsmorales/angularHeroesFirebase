@@ -10,20 +10,29 @@ import { HeroeComponent } from './components/heroes/heroe.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 import { HeroesServiceService} from './services/heroes-service.service';
+import { AlertBootstrapComponent } from './components/utils/alert-bootstrap/alert-bootstrap.component';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderModule } from 'ngx-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroeComponent,
-    NavBarComponent
+    NavBarComponent,
+    AlertBootstrapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule, // including search module
+    OrderModule,
+    NgxPaginationModule
   ],
   providers: [HeroesServiceService],
   bootstrap: [AppComponent]

@@ -28,6 +28,15 @@ export class HeroesServiceService {
     return this.httpClient.put(this.URL_BASE + '/' + key$ + this.jsonUrl, body, {headers});
   }
 
+  deleteHero(key$: string) {
+    // const body = JSON.stringify(heroe);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.delete(this.URL_BASE + '/' + key$ + this.jsonUrl, {headers});
+  }
+
   getHero(key$: string) {
     // const body = JSON.stringify(heroe);
     const headers = new HttpHeaders({
@@ -35,5 +44,13 @@ export class HeroesServiceService {
     });
 
     return this.httpClient.get(this.URL_BASE + '/' + key$ + this.jsonUrl, {headers});
+  }
+
+  getAllTheHeros() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.get(this.URL_BASE  + this.jsonUrl, {headers});
   }
 }

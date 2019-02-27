@@ -1,6 +1,9 @@
 <div>
-  <h3>Héroe: <small>Nom heroe</small></h3>
+  <h3>Héroe <small *ngIf="!new">{{hero.name}}</small></h3>
   <hr>
+
+  <app-alert-bootstrap [alertShow]="alertShow" [alertClass]="alertClass" [alertMessage]="alertMessage"></app-alert-bootstrap>
+
   <form [formGroup]="form" (submit)="getSubmitForm()" novalidate>
 
     <div class="form-group row">
@@ -50,6 +53,20 @@
         <div class="invalid-feedback">
           <p *ngIf="form.controls['house'].errors?.required">Por favor seleccione una casa.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Bio</label>
+      <div class="col-8">
+
+        <textarea class="form-control" rows="4" [ngClass]="{'is-valid': form.get('bio').valid}"
+                  placeholder="Biografía"
+                  formControlName="bio"></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+
       </div>
     </div>
 
