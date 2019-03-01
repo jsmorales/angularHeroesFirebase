@@ -15,6 +15,7 @@ import { AlertBootstrapComponent } from './components/utils/alert-bootstrap/aler
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderModule } from 'ngx-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GetKeysPipe } from './pipes/get-keys.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HeroesComponent,
     HeroeComponent,
     NavBarComponent,
-    AlertBootstrapComponent
+    AlertBootstrapComponent,
+    GetKeysPipe
   ],
   imports: [
     BrowserModule,

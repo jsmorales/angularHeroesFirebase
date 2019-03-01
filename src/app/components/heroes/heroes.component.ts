@@ -16,7 +16,7 @@ import {hasOwnProperty} from 'tslint/lib/utils';
 export class HeroesComponent implements OnInit {
   loading: boolean;
   hero: any;
-  heroes: Heroe[] = [];
+  heroes: any = [];
   key = 'name'; // set default
   reverse = false;
   p = 1;
@@ -25,7 +25,7 @@ export class HeroesComponent implements OnInit {
   ngOnInit() {
     this.getAllHeroes();
   }
-  // sorting
+  // sorting [https://ciphertrick.com/2017/08/01/search-sort-pagination-in-angular/]
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
@@ -37,19 +37,7 @@ export class HeroesComponent implements OnInit {
 
     this.heroesService.getAllTheHeros().subscribe(data => {
       console.log(data);
-      // @ts-ignore
-      let hero: Heroe = {};
-      for (const key in data) {
-        const value = data[key];
-        console.log(value);
-        console.log(key);
-        hero = value;
-        if (!hasOwnProperty(hero, 'bio')) {
-          hero.bio = '';
-        }
-        hero.key$ = key;
-        this.heroes.push(hero);
-      }
+      this.heroes = data; // the transformation of the object is on the pipe getKeys
       this.loading = false;
     },
       error1 => console.log(error1));
@@ -63,7 +51,7 @@ export class HeroesComponent implements OnInit {
   deleteHero($key: string) {
     this.heroesService.deleteHero($key).subscribe(data => {
       console.log(data);
-      this.getAllHeroes();
+      delete this.heroes[$key];
     });
     $('#deleteModal').click();
   }
